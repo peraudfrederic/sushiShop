@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* CSS general (commun a tous les composants) */
+
+/* Titre de page content */
+.div-title-page{
+	margin-top: 80px;
+}
+
+/* Margin-top 15px */
+.margin-t15{
+	margin-top: 15px;
+}

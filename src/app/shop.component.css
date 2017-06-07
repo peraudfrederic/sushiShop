@@ -1,0 +1,19 @@
+/* h3 vignette produit */
+.h3-vignette{
+	margin-top: 0; 
+	margin-bottom: 15px;
+}
+
+/* bouton Ajouter au panier*/
+.btn-ajout-panier{
+	background-color: #ea5819;
+	border-color: #f94c02;
+	color: #fff;
+}
+
+/* bouton Ajouter au panier - changement de couleur au survol et au focus */
+.btn-ajout-panier:hover, .btn-ajout-panier:focus{
+	background-color: #ff4300;
+	border-color: #f94c02;
+	color: #fff;
+}

@@ -1,0 +1,13 @@
+.navbar-header{
+	border: 1px solid transparent; /* annule la fusion des marges */
+}
+
+.navbar-inverse{
+	border-color: transparent; 
+	border: 1px solid transparent; /* annule la fusion des marges */
+}
+
+/* logo navbar */
+.img-logo{
+	padding: 3px; 
+}

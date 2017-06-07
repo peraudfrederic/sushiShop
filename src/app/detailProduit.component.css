@@ -1,0 +1,27 @@
+
+.retour-boutique{
+	margin-top: 30px;
+}
+
+.retour-boutique p a{
+	text-decoration: none;
+	color: Chocolate;
+}
+
+.detail-produit-btn-ajout{
+	margin-top: 20px;
+}
+
+/* bouton Ajouter au panier*/
+.btn-ajout-panier{
+	background-color: #ea5819;
+	border-color: #f94c02;
+	color: #fff;
+}
+
+/* bouton Ajouter au panier - changement de couleur au survol et au focus */
+.btn-ajout-panier:hover, .btn-ajout-panier:focus{
+	background-color: #ff4300;
+	border-color: #f94c02;
+	color: #fff;
+}
