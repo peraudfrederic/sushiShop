@@ -12,16 +12,20 @@
 				
 					<div class="form-group">
 						<label for="email">E-mail :</label>
-						<input type="email" class="form-control" id="email" placeholder="Entez votre adresse e-mail">
+						<input type="email" class="form-control" id="email" placeholder="Entez votre adresse e-mail" [(ngModel)]="user.email" name="insc_email">
 					</div>
 				  
 					<div class="form-group">
 						<label for="password">Mot de passe :</label>
-						<input type="password" class="form-control" id="password" placeholder="Entrez votre mot de passe">
+						<input type="password" class="form-control" id="password" placeholder="Entrez votre mot de passe" [(ngModel)]="user.mdp" name="insc_mdp">
 					</div>
 
-				  <button type="submit" class="btn btn-primary">Se connecter</button>
+				  <button type="submit" class="btn btn-primary" (click)="onConnecterUseur()">Se connecter</button>
 				
+				  <div class="alert-danger">{{errorMsg}}</div>
+				  <!--> <div ><font color="red">{{errorMsg}}</font></div></!-->
+				  <!--> <div [ngModel]="errorMsg" name="insc_error" ><font color="red"></font></div>  </!-->
+
 				</form>
 			</div>
 			

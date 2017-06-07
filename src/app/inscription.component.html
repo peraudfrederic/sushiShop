@@ -11,25 +11,29 @@
 
 					<div class="form-group">
 						<label for="nom">Nom :</label>
-						<input type="text" class="form-control" id="nom" placeholder="Entez votre nom">
+						<input type="text" class="form-control" id="nom" placeholder="Entez votre nom" [(ngModel)]="user.nom" name="insc_nom" >
 					</div>	
 
 					<div class="form-group">
 						<label for="prenom">Prenom :</label>
-						<input type="text" class="form-control" id="prenom" placeholder="Entez votre prenom">
+						<input type="text" class="form-control" id="prenom" placeholder="Entez votre prenom" [(ngModel)]="user.prenom" name="insc_prenom">
 					</div>						
 				
 					<div class="form-group">
 						<label for="email">E-mail :</label>
-						<input type="email" class="form-control" id="email" placeholder="Entez votre adresse e-mail">
+						<input type="email" class="form-control" id="email" placeholder="Entez votre adresse e-mail" [(ngModel)]="user.email" name="insc_email">
 					</div>
 				  
 					<div class="form-group">
 						<label for="nom">Mot de passe :</label>
-						<input type="password" class="form-control" id="nom" placeholder="Entrez votre mot de passe">
+						<input type="password" class="form-control" id="nom" placeholder="Entrez votre mot de passe" [(ngModel)]="user.mdp" name="insc_mdp">
 					</div>
 
-				  <button type="submit" class="btn btn-primary">Envoyer</button>
+				  <button type="submit" class="btn btn-primary" (click)="onInscrireUseur()">Envoyer</button>
+				  
+				  <div class="alert-danger">{{errorMsg}}</div>
+				  <!--> <div ><font color="red">{{errorMsg}}</font></div></!-->
+				  <!--> <div [ngModel]="errorMsg" name="insc_error" ><font color="red"></font></div>  </!-->
 				
 				</form>
 			</div>

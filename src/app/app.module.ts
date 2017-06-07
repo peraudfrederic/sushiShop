@@ -18,6 +18,7 @@ import { PanierComponent } from "app/panier.component";
 import { DetailProduitComponent } from "app/detailProduit.component";
 import { DetailCommandeComponent } from "app/detailCommande.component";
 import { ProduitService } from "app/service/produit.service";
+import { UserService } from "app/service/user.service";
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ProduitService } from "app/service/produit.service";
     HttpModule,
 	  AppRoutingModule // on importe AppRoutingModule
   ],
-  providers: [ProduitService], // ajout de ProduitService (sinon ne sera pas injecté)
+  providers: [ProduitService,
+              UserService], // ajout de ProduitService (sinon ne sera pas injecté)
   bootstrap: [AppComponent]
 })
 export class AppModule { }
