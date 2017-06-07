@@ -3,7 +3,6 @@ import { Routes, RouterModule } from "@angular/router";
 import { NavbarComponent } from './navbar.component'; // import de NavbarComponent
 import { FooterComponent } from './footer.component'; // import de FooterComponent
 import { HeaderComponent } from './header.component'; // import de HeaderComponent
-import { TriComponent  } from './tri.component'; // import de TriComponent 
 import { ShopComponent } from './shop.component'; // import de TriComponent 
 import { AccueilComponent } from './accueil.component'; // import de AccueilComponent
 import { ConnexionComponent } from "app/connexion.component";
@@ -22,7 +21,7 @@ export const appRoutes: Routes = [
     {path: 'inscription', component: InscriptionComponent},
     {path: 'profil', component: ProfilComponent},
     {path: 'panier', component: PanierComponent},
-    {path: 'detailproduit', component: DetailProduitComponent},
+    {path: 'detailproduit/:id', component: DetailProduitComponent}, // on lie le parametre "id"
     {path: 'detailcommande', component: DetailCommandeComponent}
 ]
 

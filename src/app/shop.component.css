@@ -1,3 +1,8 @@
+/* la ligne (div.row) contenant les filtres */
+.div-filtres{
+	margin-bottom: 40px;
+}
+
 /* h3 vignette produit */
 .h3-vignette{
 	margin-top: 0; 

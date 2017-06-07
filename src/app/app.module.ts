@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar.component'; 
 import { FooterComponent } from './footer.component'; 
 import { HeaderComponent } from './header.component'; 
-import { TriComponent  } from './tri.component'; 
 import { ShopComponent } from './shop.component'; 
 import { AccueilComponent } from './accueil.component'; 
 import { ConnexionComponent } from './connexion.component'; 
@@ -18,6 +17,8 @@ import { PanierComponent } from "app/panier.component";
 import { DetailProduitComponent } from "app/detailProduit.component";
 import { DetailCommandeComponent } from "app/detailCommande.component";
 import { ProduitService } from "app/service/produit.service";
+import { MotClePipe } from "app/pipes/motCle.filter";
+import { CategoriePipe } from "app/pipes/categorie.filter";
 
 
 @NgModule({
@@ -26,7 +27,6 @@ import { ProduitService } from "app/service/produit.service";
     NavbarComponent, 
     FooterComponent, 
     HeaderComponent, 
-    TriComponent, 
     ShopComponent, 
     AccueilComponent,     
     ConnexionComponent, 
@@ -35,7 +35,9 @@ import { ProduitService } from "app/service/produit.service";
     ProfilComponent,  
     PanierComponent,
     DetailProduitComponent,
-    DetailCommandeComponent
+    DetailCommandeComponent,
+    MotClePipe, // filtre
+    CategoriePipe // filtre
   ],
   imports: [
     BrowserModule,
