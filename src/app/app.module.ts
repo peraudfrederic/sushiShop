@@ -20,6 +20,7 @@ import { ProduitService } from "app/service/produit.service";
 import { UserService } from "app/service/user.service";
 import { MotClePipe } from "app/pipes/motCle.filter";
 import { CategoriePipe } from "app/pipes/categorie.filter";
+import { PanierService } from "app/service/panier.service";
 
 
 @NgModule({
@@ -46,8 +47,9 @@ import { CategoriePipe } from "app/pipes/categorie.filter";
     HttpModule,
 	  AppRoutingModule // on importe AppRoutingModule
   ],
-  providers: [ProduitService,
-              UserService], // ajout de ProduitService (sinon ne sera pas injecté)
+  providers: [ProduitService, // ajout de ProduitService (sinon ne sera pas injecté)
+              UserService,
+              PanierService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
