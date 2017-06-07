@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit, Input } from '@angular/core'; 
 import { Produit } from "app/model/produit";
 import { ProduitService } from "app/service/produit.service";
 
@@ -9,7 +9,10 @@ import { ProduitService } from "app/service/produit.service";
   styleUrls: ['./shop.component.css'] // precise le chemin vers le css
 })
 
-export class ShopComponent implements OnInit {
+export class ShopComponent implements OnInit {  
+
+  @Input() produitTrie: Produit; // on crée une entité réutilisable dans d'autres composants
+  
    produits: Produit[]; // pour preparer l'affichage (sera vu par la page html) 
    produitSelectionne : Produit; // produit selectionné à afficher
      

@@ -26,11 +26,10 @@ export class ProduitService{
         // _http injecté ici servira à appeler des WS REST
     }
     
-    public produitSelectionne(p : Produit) : Observable<Produit>{
-        let urlWS : string = "http://localhost:8080/sushiShop/services/rest/produits/" + p.id;
-        return this._http.put(urlWS, JSON.stringify(p), {headers: this._headers})
-                         .map(response => response.json()) // stringify : pour transformer en json l'objet auteur
-                         .catch(e => Observable.throw('error: '+ e));         
+    public produitSelectionne(id: string) : Observable<Produit>{
+        let urlWS : string = "http://localhost:8080/sushiShop/services/rest/produits/" + id;
+        return this._http.get(urlWS).map(response => response.json())
+                        .catch(e => Observable.throw('error: '+ e));          
     }
 
     public rechercherAllProduits() : Observable<Produit[]> { // retour : un Observable de Produit[]
