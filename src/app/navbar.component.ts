@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'; 
 import { UserService } from "app/service/user.service";
+import { PanierService } from "app/service/panier.service";
 
 // @Component pour déclarer le composant avec un sélector, un template html et un styleUrl
 @Component({
@@ -14,15 +15,20 @@ export class NavbarComponent {
     // @Input() item: Item; // on crée une entité réutilisable dans d'autres composants
 
     private isConnected : boolean;
+    private nbrProduit : number;
 
-    constructor(private _userService : UserService){ // _userService est injecté ici via angular
+    constructor(private _userService : UserService, private _panierService : PanierService){ // _userService est injecté ici via angular
 
     }
 
     ngOnInit(): void { // ngOnInit : dès que le composant est visuellement prêt
-      //this.isConnected = this._userService.isConnected();
+      // on s'abonne pour être notifier à chaque changement de la variable isConnected qui viendrait d'une autre page
       this._userService.isConnectedBSubject.subscribe(
           isConnected => this.isConnected=isConnected);
+
+      // on s'abonne pour être notifier à chaque changement du nombre d'article dans le panier
+      this._panierService.nombreDeProduitBSubject.subscribe(
+          nombreDeProduit => this.nbrProduit=nombreDeProduit);
     }
 
 

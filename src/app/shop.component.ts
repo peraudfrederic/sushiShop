@@ -26,7 +26,6 @@ export class ShopComponent implements OnInit {
   }
 
   private ajoutPanier(produit : Produit) : void {
-  console.log('appel ajout panier');
      this._panierService.Ajouter(produit);
   }
 

@@ -70,10 +70,13 @@ export class UserService{
 
     private updateIsUserConnected() : void {
         let isConnected = false;
+        // on relit le localstorage pour s'assurer qu'il a bien été enregistré
         let usr = JSON.parse(localStorage.getItem('currentUser'));
+        // on verifit qu'un "user est valide"
         if(usr && usr.mdp != "")
             isConnected = true;
 
+        // on previent tous le monde du changement
         this.isConnected = isConnected;
         this.isConnectedBSubject.next(this.isConnected);
     }

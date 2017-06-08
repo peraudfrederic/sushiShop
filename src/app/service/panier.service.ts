@@ -3,6 +3,7 @@ import { Headers, Http, Response } from "@angular/http";
 import { PanierLigneWS } from "../model/panierLigneWS";
 import { PanierLigneAff } from "app/model/panierLigneAff";
 import { Produit } from "app/model/produit";
+import {BehaviorSubject, Subject, Subscriber} from 'rxjs';
 
 @Injectable() // Quand on fait un service, il est toujours @Injectable()
 export class PanierService{
@@ -12,25 +13,53 @@ export class PanierService{
     private panierForWS : Array <PanierLigneWS>;
     private panierForAff : Array <PanierLigneAff>;
 
+    public nombreDeProduit : number;
+    public nombreDeProduitBSubject :BehaviorSubject<number> = new BehaviorSubject(0);
+
     constructor(private _http : Http){
         // _http injecté ici servira à appeler des WS REST
+
+        // pour compter le nombre de produit dans un "vieux panier" à l'ouverture du site
+        let temp = this.getForWS();
+        let count = 0;
+        if(temp)
+            temp.forEach(ligne => count += 1);
+        this.nombreDeProduit = count;
+        this.updateNombreDeProduit();
+    }
+
+
+    private updateNombreDeProduit() : void {
+        // on previent tout le monde
+        this.nombreDeProduitBSubject.next(this.nombreDeProduit);
     }
     
     
     public Ajouter(produit : Produit) : void {
                 
         this.AjouterForWS(produit);
-        this.AjouterForAff(produit);        
+        this.AjouterForAff(produit);  
+
+        // on previent tout le monde
+        // l'increment du nombre de produit n'est fait qu'1 seule fois dans AjouterForWS
+        this.updateNombreDeProduit();    
     }
 
     public vider() : void {
         localStorage.removeItem('currentPanierWS');
         localStorage.removeItem('currentPanierAff');
+
+        // on previent tout le monde
+        this.nombreDeProduit = 0;
+        this.updateNombreDeProduit();
     }
 
     public getForWS() : Array <PanierLigneWS> {
         
         this.panierForWS = JSON.parse(localStorage.getItem('currentPanierWS'));
+
+        // on previent tout le monde
+        this.updateNombreDeProduit();
 
         return this.panierForWS;
     }
@@ -69,6 +98,9 @@ export class PanierService{
         if(produitDejaPresent == 0) 
         {
             this.panierForWS.push(new PanierLigneWS(0,0,produit.id,1, produit.prix));
+            
+            // on incremente le nombre de produit
+            this.nombreDeProduit += 1;
         }
 
         // on enregistre le panier en local
