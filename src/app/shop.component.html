@@ -33,13 +33,18 @@
         <div class="row text-center">
 
             <!--<div *ngFor="let p of produits | motCleFilter:inputMotCleFilter.value | categorieFilter:categorieFilter.value" class="col-md-3 col-sm-6 hero-feature">-->
-			<div *ngFor="let p of produits | motCleFilter:inputMotCleFilter.value" class="col-md-3 col-sm-6 hero-feature">
+			<div *ngFor="let p of produits | motCleFilter:inputMotCleFilter.value" class="col-lg-3 col-md-6 hero-feature">
                 <div class="thumbnail">
                     <img src="assets/{{p.image}}" alt="{{p.image_alt}}">
                     <div class="caption">
-                        <h4 class="h3-vignette">{{p.libelle}}</h4>
-                        <p>
-                            <a href="#" class="btn btn-ajout-panier">Ajouter</a> <a [routerLink]="['/detailproduit', p.id]" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Détails</a>
+                        <div>
+							<h4 class="h4-vignette">{{p.libelle}}</h4>	
+
+							<h4 *ngIf="p.stock > 0">Prix : {{p.prix}} €</h4>
+							<h4 *ngIf="p.stock == 0" class="h5-rupture-stock">Rupture de stock</h4>
+						</div>	
+                        <p class="p-avec-boutons">
+                            <button type="button" class="btn btn-ajout-panier" [disabled]="p.stock == 0">Ajouter</button> <a [routerLink]="['/detailproduit', p.id]" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Détails</a>
                         </p>
                     </div>
                 </div>

@@ -3,8 +3,14 @@
 	margin-bottom: 40px;
 }
 
-/* h3 vignette produit */
-.h3-vignette{
+/* Paragraphe contenant les boutons ajouter et supprimer */
+.p-avec-boutons{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+/* h4 vignette produit */
+.h4-vignette{
 	margin-top: 0; 
 	margin-bottom: 15px;
 }
@@ -21,4 +27,8 @@
 	background-color: #ff4300;
 	border-color: #f94c02;
 	color: #fff;
+}
+
+.h5-rupture-stock{
+	color: RoyalBlue;
 }
