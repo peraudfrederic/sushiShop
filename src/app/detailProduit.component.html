@@ -1,18 +1,17 @@
-		<div class="row retour-boutique">
+		<div class="row retour-boutique" *ngIf="produitSelectionne">
 				<p><a routerLink="/accueil"><span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span> Retour boutique</a></p>
 
-				<h3>Libellé</h3>
-				<!--<h3>{{produitSelectionne.libelle}}</h3>-->
+				<h3>{{produitSelectionne.libelle}}</h3>
 				<hr>				
-				<h5>Prix : 3 € | 1 pièce(s)</h5>
+				<h5>Prix : {{produitSelectionne.prix}} € | 1 pièce(s)</h5>
 		</div>
 		
 		<div class="row">			
-			<div class="col-md-6">
+			<div class="col-md-6" *ngIf="produitSelectionne">
 				
-				<img src="assets/img/img-1.png" alt="">
+				<img src="assets/{{produitSelectionne.image}}" alt="{{produitSelectionne.image_alt}}" class="detail-produit-img">
 				
-				<p>Sous ses allures extrêmement simples le sushi Crevette exige une préparation du riz parfaite et des crevettes de première qualité pour faire de sa dégustation un vrai moment de plaisir.</p>
+				<p>{{produitSelectionne.description}}</p>
 				
 				<p class="detail-produit-btn-ajout"><a href="#" class="btn btn-ajout-panier">Ajouter au panier</a></p>
 			

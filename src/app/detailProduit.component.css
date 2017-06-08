@@ -8,6 +8,11 @@
 	color: Chocolate;
 }
 
+.detail-produit-img{
+	margin-top: 15px;
+	margin-bottom: 25px;
+}
+
 .detail-produit-btn-ajout{
 	margin-top: 20px;
 }

@@ -12,21 +12,26 @@ import { ActivatedRoute } from "@angular/router";
 
 export class DetailProduitComponent {
     
-    public id:number;
+    id : number;
+    produitSelectionne : Produit; // produit selectionné à afficher
+    
+    constructor(private _produitService : ProduitService, private route: ActivatedRoute){} // _produitService est injecté ici via angular    
 
     ngOnInit(): void {
-       this.id = this.route.snapshot.params['id'];
-       //console.log(this.id); // verifier que l'id est bien passe en parametre dans URL
-    }
-   
-    produitSelectionne : Produit; // produit selectionné à afficher
+       this.id = this.route.snapshot.params['id']; // on recupere l'id passe en parametre dans URL
+       //console.log(this.id); 
 
-    constructor(private _produitService : ProduitService, private route: ActivatedRoute){} // _produitService est injecté ici via angular
-
-      public afficherDetailProduit(id:string){
-        this._produitService.produitSelectionne(id)
+       this._produitService.afficherDetailProduit(this.id)
         .subscribe(produit => {this.produitSelectionne = produit; },
                  e => console.log(e.message));
-  }
+    }
+   
+    
+
+
+
+     
+
+
 
 }

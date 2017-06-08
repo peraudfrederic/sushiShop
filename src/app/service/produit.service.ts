@@ -25,18 +25,20 @@ export class ProduitService{
     constructor(private _http : Http){
         // _http injecté ici servira à appeler des WS REST
     }
-    
-    public produitSelectionne(id: string) : Observable<Produit>{
-        let urlWS : string = "http://localhost:8080/sushiShop/services/rest/produits/" + id;
-        return this._http.get(urlWS).map(response => response.json())
-                        .catch(e => Observable.throw('error: '+ e));          
-    }
-
-    public rechercherAllProduits() : Observable<Produit[]> { // retour : un Observable de Produit[]
+  
+    // ------ Select all : ------
+    public afficherAllProduits() : Observable<Produit[]> { // retour : un Observable de Produit[]
         // return Observable.of(this.listeProduits); // simulation de WS
         let urlWS : string = "http://localhost:8080/sushiShop/services/rest/produits/all";
         return this._http.get(urlWS).map(response => response.json())
                         .catch(e => Observable.throw('error: '+ e));    
     } 
+
+    // ------ Select by id : ------
+    public afficherDetailProduit(id: number) : Observable<Produit>{
+        let urlWS : string = "http://localhost:8080/sushiShop/services/rest/produits/" + id;
+        return this._http.get(urlWS).map(response => response.json())
+                        .catch(e => Observable.throw('error: '+ e));          
+    }
 
 }

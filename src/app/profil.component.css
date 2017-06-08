@@ -3,3 +3,7 @@
 .membre-table-commandes{
 	margin-top: 25px;
 }
+
+.liste-commandes-min-height{
+	min-height: 300px;
+}

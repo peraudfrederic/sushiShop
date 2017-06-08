@@ -19,10 +19,10 @@
 					<label>Filtrer par promotion</label>
 					<select class="form-control" id="">
                         <option></option>>        
-						<option value ="">5%</option>
-						<option value ="">10%</option>
-						<option value ="">15%</option>
-						<option value ="">20%</option>
+						<option value ="1">5%</option>
+						<option value ="2">10%</option>
+						<option value ="3">15%</option>
+						<option value ="4">20%</option>
 					</select>
 				</div>
 			</div>
@@ -33,7 +33,7 @@
         <div class="row text-center">
 
             <!--<div *ngFor="let p of produits | motCleFilter:inputMotCleFilter.value | categorieFilter:categorieFilter.value" class="col-md-3 col-sm-6 hero-feature">-->
-            <div *ngFor="let p of produits | categorieFilter:categorieFilter.value" class="col-md-3 col-sm-6 hero-feature">    
+			<div *ngFor="let p of produits | motCleFilter:inputMotCleFilter.value" class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
                     <img src="assets/{{p.image}}" alt="{{p.image_alt}}">
                     <div class="caption">
