@@ -39,7 +39,7 @@
                     <div class="caption">
                         <h4 class="h3-vignette">{{p.libelle}}</h4>
                         <p>
-                            <a href="#" class="btn btn-ajout-panier">Ajouter</a> <a [routerLink]="['/detailproduit', p.id]" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Détails</a>
+                            <button href="#" (click)="ajoutPanier(p)" class="btn btn-ajout-panier">Ajouter</button> <a [routerLink]="['/detailproduit', p.id]" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Détails</a>
                         </p>
                     </div>
                 </div>

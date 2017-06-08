@@ -17,16 +17,16 @@
                     <li>
                         <a routerLink="/accueil">Accueil</a>
                     </li>
-                    <li>
+                    <li *ngIf="isConnected == false">
                         <a routerLink="/inscription">Inscription</a>
                     </li>
-                    <li>
+                    <li *ngIf="isConnected == false">
                         <a routerLink="/connexion">Connexion</a>
                     </li>
-					<li>
+					<li *ngIf="isConnected == true">
                         <a routerLink="/profil">Mon profil</a>
                     </li>
-                    <li>
+                    <li *ngIf="isConnected == true">
                         <a routerLink="/deconnexion">Déconnexion</a>
                     </li>
                     <li>

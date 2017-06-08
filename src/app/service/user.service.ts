@@ -6,14 +6,19 @@ import 'rxjs/add/observable/of'; // // Observable class extensions
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw'; 
+import {BehaviorSubject, Subject, Subscriber} from 'rxjs';
 
 @Injectable() // Quand on fait un service, il est toujours @Injectable()
 export class UserService{
-
+    
     private _headers = new Headers({'Content-Type': 'application/json'});
+
+    public isConnected : boolean;
+    public isConnectedBSubject :BehaviorSubject<boolean> = new BehaviorSubject(false);
 
     constructor(private _http : Http){
         // _http injecté ici servira à appeler des WS REST
+        //this.isConnected = this.isConnected();
     }
 
     public inscrireUser (user : User) : Observable<User> { // retour : un Observable de User[]
@@ -31,6 +36,7 @@ export class UserService{
         
         let urlWS : string = "http://localhost:8080/sushiShop/services/rest/users/";
         
+
         return this._http.put(urlWS, JSON.stringify(user), {headers: this._headers}).map(response => response.json())
                         .catch(e => Observable.throw('error: '+ e));    
     }
@@ -43,7 +49,33 @@ export class UserService{
                         .catch(e => Observable.throw('error: '+ e));*/
 
         // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');    
+        this.unstoreLocalUser();    
+    }
+
+    public storeLocalUser(usr : User) {
+        if (usr) { // store user details in local storage to keep user logged in between page refreshes
+            localStorage.setItem('currentUser', JSON.stringify(usr));
+        }
+
+        this.updateIsUserConnected();
+        //this.isConnected2 = this.isConnected();
+    }
+
+    public unstoreLocalUser() {
+        // remove user from local storage to log user out
+        localStorage.removeItem('currentUser');
+
+        this.updateIsUserConnected();
+    }
+
+    private updateIsUserConnected() : void {
+        let isConnected = false;
+        let usr = JSON.parse(localStorage.getItem('currentUser'));
+        if(usr && usr.mdp != "")
+            isConnected = true;
+
+        this.isConnected = isConnected;
+        this.isConnectedBSubject.next(this.isConnected);
     }
 
 }

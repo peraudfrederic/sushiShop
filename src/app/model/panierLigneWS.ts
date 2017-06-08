@@ -1,4 +1,4 @@
-export class PanierLigne{
+export class PanierLigneWS{
 
     id : number;
     idCommande : number;
@@ -8,8 +8,8 @@ export class PanierLigne{
 
     constructor(id : number = 0, 
                 idCommande : number = 0,
-                quantite : number = 0,
                 idProduit : number,
+                quantite : number = 0,
                 prix : number
                 ){
         this.id = id;

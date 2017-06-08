@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core'; 
 import { Produit } from "app/model/produit";
 import { ProduitService } from "app/service/produit.service";
+import { PanierService } from "app/service/panier.service";
 
 // @Component pour déclarer notre composant avec un sélector, un template html et un styleUrl
 @Component({
@@ -15,7 +16,7 @@ export class ShopComponent implements OnInit {
   
    produits: Produit[]; // pour preparer l'affichage (sera vu par la page html) 
      
-   constructor(private _produitService : ProduitService){ } // _produitService est injecté ici via angular
+   constructor(private _produitService : ProduitService, private _panierService : PanierService){ } // _produitService est injecté ici via angular
   
   // ngOnInit : dès que le composant est visuellement prêt, je declenche une requete qui declenche un observable qui permet une requete asynchrone
   ngOnInit(): void {     
@@ -23,4 +24,11 @@ export class ShopComponent implements OnInit {
         .subscribe(listeProd => {this.produits = listeProd; },
                  e => console.log(e.message)); 
   }
+
+  private ajoutPanier(produit : Produit) : void {
+  console.log('appel ajout panier');
+     this._panierService.Ajouter(produit);
+  }
+
+
 }

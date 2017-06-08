@@ -29,8 +29,9 @@ export class ConnexionComponent {
     onConnecterUseur(): void {
       this._userService.connecterUser(this.user).subscribe(
         usr => {this._router.navigate(['/accueil']); this.errorMsg = "";
-                    if (usr) { // store user details in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(usr));
+                if (usr) { // store user details in local storage to keep user logged in between page refreshes
+                    //localStorage.setItem('currentUser', JSON.stringify(usr));
+                    this._userService.storeLocalUser(usr);
                 } },
                  e => { console.log(e.message); this.errorMsg = "Erreur lors de la connection. Merci de vérifier vos identifiants" });
     }

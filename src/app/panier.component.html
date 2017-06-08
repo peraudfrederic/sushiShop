@@ -15,7 +15,14 @@
 							  <th class="text-right">Montant</th>
 							</tr>
 						  </thead>
-						  <tbody>
+						  <tbody *ngFor="let l of panierForAff">
+							<tr>
+								<td>{{l.libelle}}</td>
+								<td>{{l.prix}}</td>
+								<td class="text-right">{{l.quantite}}</td>
+								<td class="text-right">{{l.montant}}</td>
+							</tr>
+							<!--
 							<tr>
 								<td>Sushi crevette</td>
 								<td>1,79</td>
@@ -40,18 +47,19 @@
 							</tr>							
 							<tr>
 								<td colspan="3"><strong>Montant TVA :</strong></td><!-- Montant TVA = (0,2/1,2) x TTC -->
-								<td class="text-right">20%</td>
+							<!--	<td class="text-right">20%</td>
 							</tr>
 							<tr class="bg-info">
 								<td colspan="3"><strong>TOTAL TTC :</strong></td>
 								<td class="text-right">19,82 €</td>
 							</tr>							
-
+							 -->
 						  </tbody>
 					</table>
 					
 					<div class="text-right">
 						<button type="button" class="btn btn-primary">Valider le panier</button>
+						<button type="button" (click)="viderPanier()" class="btn btn-primary">Vider le panier</button>
 					</div>
 	
 			</div>
