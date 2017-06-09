@@ -99,7 +99,7 @@ export class PanierService{
     }
 
     public EnvoyerPanier() : Observable<PanierLigneWS> {
-        let urlWS : string = "http://localhost:8080/sushiShop/services/rest/commande/panier";
+        let urlWS : string = "http://localhost:8080/sushiShop/services/rest/commandes/panier";
         
         this.getForWS();
 

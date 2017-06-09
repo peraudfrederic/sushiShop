@@ -5,7 +5,7 @@ export class PanierLigneWS{
     idProduit : number;
     quantite : number;
     prix : number;
-    idUser : number;
+    id_user : number;
 
     constructor(id : number = 0, 
                 idCommande : number = 0,
