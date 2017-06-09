@@ -81,4 +81,13 @@ export class UserService{
         this.isConnectedBSubject.next(this.isConnected);
     }
 
+    public getUserName() : string {
+        let name = "";
+        let usr = JSON.parse(localStorage.getItem('currentUser'));
+        if(usr)
+            name = usr.prenom + " " + usr.nom;
+
+        return name;
+    }
+
 }

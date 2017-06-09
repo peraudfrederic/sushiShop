@@ -7,29 +7,30 @@
 			<div class="col-xs-12 col-sm-6 div-form">
 
 				<!-- ************ Formulaire d'inscription **************** -->
-				<form>
+				<form #inscriptionForm="ngForm">
 
-					<div class="form-group">
+					<div class="form-group" >
 						<label for="nom">Nom :</label>
-						<input type="text" class="form-control" id="nom" placeholder="Entez votre nom" [(ngModel)]="user.nom" name="insc_nom" >
+						<input type="text" class="form-control" id="nom" placeholder="Entez votre nom" [(ngModel)]="user.nom" name="insc_nom" required #nam="ngModel">
+						<span [hidden]="nam.valid || nam.pristine" >Champ invalide</span>
 					</div>	
 
 					<div class="form-group">
 						<label for="prenom">Prenom :</label>
-						<input type="text" class="form-control" id="prenom" placeholder="Entez votre prenom" [(ngModel)]="user.prenom" name="insc_prenom">
+						<input type="text" class="form-control" id="prenom" placeholder="Entez votre prenom" [(ngModel)]="user.prenom" name="insc_prenom" required>
 					</div>						
 				
 					<div class="form-group">
 						<label for="email">E-mail :</label>
-						<input type="email" class="form-control" id="email" placeholder="Entez votre adresse e-mail" [(ngModel)]="user.email" name="insc_email">
+						<input type="email" class="form-control" id="email" placeholder="Entez votre adresse e-mail" [(ngModel)]="user.email" name="insc_email" required>
 					</div>
 				  
 					<div class="form-group">
 						<label for="nom">Mot de passe :</label>
-						<input type="password" class="form-control" id="nom" placeholder="Entrez votre mot de passe" [(ngModel)]="user.mdp" name="insc_mdp">
+						<input type="password" class="form-control" id="nom" placeholder="Entrez votre mot de passe" [(ngModel)]="user.mdp" name="insc_mdp" required>
 					</div>
 
-				  <button type="submit" class="btn btn-primary" (click)="onInscrireUseur()">Envoyer</button>
+				  <button type="submit" class="btn btn-primary" [disabled]="!inscriptionForm.valid" (click)="onInscrireUseur()">Envoyer</button>
 				  
 				  <div class="alert-danger">{{errorMsg}}</div>
 				  <!--> <div ><font color="red">{{errorMsg}}</font></div></!-->

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PanierService } from "app/service/panier.service";
 import { PanierLigneWS } from "app/model/panierLigneWS";
 import { PanierLigneAff } from "app/model/panierLigneAff";
+import { UserService } from "app/service/user.service";
 
 // @Component pour déclarer notre composant avec un sélector, un template html et un styleUrl
 @Component({
@@ -19,11 +20,17 @@ export class PanierComponent {
     private montantTTC : number;
     private montantHT : number;
     private TVA : number;
+
+    private isConnected : boolean;
     
-    constructor(private _panierService : PanierService){ 
+    constructor(private _panierService : PanierService, private _userService : UserService){ 
     } // _produitService est injecté ici via angular
 
     ngOnInit(): void {     
+      // on s'abonne pour être notifier à chaque changement de la variable isConnected qui viendrait d'une autre page
+      this._userService.isConnectedBSubject.subscribe(
+          isConnected => this.isConnected=isConnected);
+          
        this.updatePanier();
        this.updateMontant();
     }

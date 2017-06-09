@@ -8,19 +8,19 @@
 			<div class="col-xs-12 col-sm-6 div-form-connex">
                 
                 <!-- ************ Formulaire de connexion **************-->
-				<form>
+				<form #logForm="ngForm">
 				
 					<div class="form-group">
 						<label for="email">E-mail :</label>
-						<input type="email" class="form-control" id="email" placeholder="Entez votre adresse e-mail" [(ngModel)]="user.email" name="insc_email">
+						<input type="email" class="form-control" id="email" placeholder="Entez votre adresse e-mail" [(ngModel)]="user.email" name="insc_email" required>
 					</div>
 				  
 					<div class="form-group">
 						<label for="password">Mot de passe :</label>
-						<input type="password" class="form-control" id="password" placeholder="Entrez votre mot de passe" [(ngModel)]="user.mdp" name="insc_mdp">
+						<input type="password" class="form-control" id="password" placeholder="Entrez votre mot de passe" [(ngModel)]="user.mdp" name="insc_mdp" required>
 					</div>
 
-				  <button type="submit" class="btn btn-primary" (click)="onConnecterUseur()">Se connecter</button>
+				  <button type="submit" class="btn btn-primary" (click)="onConnecterUseur()" [disabled]="!logForm.valid">Se connecter</button>
 				
 				  <div class="alert-danger">{{errorMsg}}</div>
 				  <!--> <div ><font color="red">{{errorMsg}}</font></div></!-->
