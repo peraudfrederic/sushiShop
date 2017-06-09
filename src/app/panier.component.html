@@ -55,6 +55,22 @@
 							</tr>							
 							 -->
 						  </tbody>
+						  <tbody>
+							  <tr class="bg-info">
+								<td colspan="3"><strong>TOTAL HT (pour info) :</strong></td>
+								<td class="text-right">{{montantHT | number:'1.2'}} €</td>
+							</tr>							
+							<tr>
+								<td colspan="3"><strong>Montant TVA :</strong></td><!-- Montant TVA = (0,2/1,2) x TTC -->
+								<td class="text-right">{{TVA}}%</td>
+							</tr>
+							<tr class="bg-info">
+								<td colspan="3"><strong>TOTAL TTC :</strong></td>
+								<!--<td class="text-right">{{montantTTC}} €</td>-->
+								<!--<td class="text-right">{{montantTTC | currency:'EUR':true:'1.2-2' }}</td>| number:'3.2-->
+								<td class="text-right">{{montantTTC | number:'1.2'}} €</td>
+							</tr>
+						  </tbody>
 					</table>
 					
 					<div class="text-right">

@@ -16,19 +16,33 @@ export class PanierComponent {
 
     private panierForWS : Array <PanierLigneWS>;
     private panierForAff : Array <PanierLigneAff>;
+    private montantTTC : number;
+    private montantHT : number;
+    private TVA : number;
     
     constructor(private _panierService : PanierService){ 
     } // _produitService est injecté ici via angular
 
     ngOnInit(): void {     
-       this.panierForWS = this._panierService.getForWS();
-       this.panierForAff = this._panierService.getForAff();
+       this.updatePanier();
+       this.updateMontant();
     }
 
     private viderPanier() : void {
        this._panierService.vider();
+       this.updatePanier();
+       this.updateMontant();
+    }
+
+    private updatePanier() : void {
        this.panierForWS = this._panierService.getForWS();
        this.panierForAff = this._panierService.getForAff();
+    }
+
+    private updateMontant() : void {
+       this.TVA = this._panierService.getTVA();
+       this.montantTTC = this._panierService.getMontantTTC();
+       this.montantHT = this._panierService.getMontantHT();
     }
 
 }

@@ -72,6 +72,32 @@ export class PanierService{
     }
 
 
+    public getMontantTTC() : number {
+        let montant = 0.0;
+        this.panierForAff = JSON.parse(localStorage.getItem('currentPanierAff'));
+        
+        if(this.panierForAff) {
+            this.panierForWS.forEach(ligne => {
+                montant += ligne.prix * ligne.quantite;                
+            });
+        }
+
+        return montant;
+    }
+
+    public getMontantHT() : number {
+        let montant = this.getMontantTTC();
+        let taux = 100 - this.getTVA();
+        montant *= taux;
+        montant /= 100;
+        return montant;
+    }
+
+    public getTVA() : number {
+        return 5.5;
+    }
+
+
     private AjouterForWS(produit : Produit) : void {
     
         // on lit le panier en memoire
@@ -137,5 +163,5 @@ export class PanierService{
         localStorage.setItem('currentPanierAff', JSON.stringify(this.panierForAff));
     }
 
-
+    
 }
