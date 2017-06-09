@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Produit } from "app/model/produit";
 import { ProduitService } from "app/service/produit.service";
 import { PanierService } from "app/service/panier.service";
+//import { trigger, state, style, animate, transition } from '@angular/animations';
 
 // @Component pour déclarer notre composant avec un sélector, un template html et un styleUrl
 @Component({

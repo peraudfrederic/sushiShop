@@ -4,6 +4,7 @@ import { PanierLigneWS } from "../model/panierLigneWS";
 import { PanierLigneAff } from "app/model/panierLigneAff";
 import { Produit } from "app/model/produit";
 import {BehaviorSubject, Subject, Subscriber} from 'rxjs';
+import { Observable } from 'rxjs/Observable'; // pour gérer la réponse de façon asynchrone
 
 @Injectable() // Quand on fait un service, il est toujours @Injectable()
 export class PanierService{
@@ -95,6 +96,15 @@ export class PanierService{
 
     public getTVA() : number {
         return 5.5;
+    }
+
+    public EnvoyerPanier() : Observable<PanierLigneWS> {
+        let urlWS : string = "http://localhost:8080/sushiShop/services/rest/commande/panier";
+        
+        this.getForWS();
+
+        return this._http.post(urlWS, JSON.stringify(this.panierForWS), {headers: this._headers}).map(response => response.json())
+                        .catch(e => Observable.throw('error: '+ e));    
     }
 
 

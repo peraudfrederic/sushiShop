@@ -90,4 +90,13 @@ export class UserService{
         return name;
     }
 
+    public getUserId() : number {
+        let id = 0;
+        let usr = JSON.parse(localStorage.getItem('currentUser'));
+        if(usr)
+            id = usr.id;
+
+        return id;
+    }
+
 }

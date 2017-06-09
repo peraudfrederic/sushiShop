@@ -23,9 +23,15 @@
 }
 
 /* bouton Ajouter au panier - changement de couleur au survol et au focus */
-.btn-ajout-panier:hover, .btn-ajout-panier:focus{
+.btn-ajout-panier:hover {
 	background-color: #ff4300;
 	border-color: #f94c02;
+	color: #fff;
+}
+
+.btn-ajout-panier:focus{
+	background-color: blue;
+	border-color: blue;
 	color: #fff;
 }
 

@@ -3,6 +3,7 @@ import { PanierService } from "app/service/panier.service";
 import { PanierLigneWS } from "app/model/panierLigneWS";
 import { PanierLigneAff } from "app/model/panierLigneAff";
 import { UserService } from "app/service/user.service";
+import { Router } from '@angular/router';
 
 // @Component pour déclarer notre composant avec un sélector, un template html et un styleUrl
 @Component({
@@ -23,7 +24,7 @@ export class PanierComponent {
 
     private isConnected : boolean;
     
-    constructor(private _panierService : PanierService, private _userService : UserService){ 
+    constructor(private _panierService : PanierService, private _userService : UserService, private _router: Router){ 
     } // _produitService est injecté ici via angular
 
     ngOnInit(): void {     
@@ -51,5 +52,11 @@ export class PanierComponent {
        this.montantTTC = this._panierService.getMontantTTC();
        this.montantHT = this._panierService.getMontantHT();
     }
+
+    private validerPanier() : void {
+       this._router.navigate(['/paiement']);
+    }
+
+
 
 }

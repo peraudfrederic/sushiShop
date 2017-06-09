@@ -30,7 +30,9 @@
                         <a routerLink="/deconnexion">Déconnexion</a>
                     </li>
                     <li>
-                        <a routerLink="/panier">Panier ({{nbrProduit}})</a>
+                        <!-- <span [ngClass]="{c1 : (nbrProduit % 2 == 0) , c2 : (nbrProduit % 2 != 0)}" >  -->
+                         <a routerLink="/panier" [ngClass]="{c1 : (nbrProduit % 2 == 0) , c2 : (nbrProduit % 2 != 0)}" >Panier ({{nbrProduit}})</a>
+                        <!-- </span > -->
                     </li>					
                 </ul>
             </div>

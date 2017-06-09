@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { UserService } from "app/service/user.service";
 import { MotClePipe } from "app/pipes/motCle.filter";
 import { CategoriePipe } from "app/pipes/categorie.filter";
 import { PanierService } from "app/service/panier.service";
+import { PaiementComponent } from "app/paiement.component";
 
 
 @NgModule({
@@ -38,6 +40,7 @@ import { PanierService } from "app/service/panier.service";
     PanierComponent,
     DetailProduitComponent,
     DetailCommandeComponent,
+    PaiementComponent,
     MotClePipe, // filtre
     CategoriePipe // filtre
   ],
@@ -45,7 +48,8 @@ import { PanierService } from "app/service/panier.service";
     BrowserModule,
     FormsModule,
     HttpModule,
-	  AppRoutingModule // on importe AppRoutingModule
+	  AppRoutingModule, // on importe AppRoutingModule
+    BrowserAnimationsModule
   ],
   providers: [ProduitService, // ajout de ProduitService (sinon ne sera pas injecté)
               UserService,

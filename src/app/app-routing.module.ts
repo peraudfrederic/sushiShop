@@ -12,6 +12,7 @@ import { ProfilComponent } from "app/profil.component";
 import { PanierComponent } from "app/panier.component";
 import { DetailProduitComponent } from "app/detailProduit.component";
 import { DetailCommandeComponent } from "app/detailCommande.component";
+import { PaiementComponent } from "app/paiement.component";
 
 export const appRoutes: Routes = [
     {path: '', redirectTo: 'accueil', pathMatch: 'full'},
@@ -22,7 +23,8 @@ export const appRoutes: Routes = [
     {path: 'profil', component: ProfilComponent},
     {path: 'panier', component: PanierComponent},
     {path: 'detailproduit/:id', component: DetailProduitComponent}, // on lie le parametre "id"
-    {path: 'detailcommande', component: DetailCommandeComponent}
+    {path: 'detailcommande', component: DetailCommandeComponent},
+    {path: 'paiement', component: PaiementComponent}
 ]
 
 @NgModule({
