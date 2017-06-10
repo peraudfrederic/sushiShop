@@ -4,18 +4,28 @@
 				<div class="col-md-4">
 					<label>Filtrer par mot-clé</label>
 					<input #inputMotCleFilter (keyup)="0" class="form-control">
+					<!--  avec (keyup)="0"> on recupere la valeur de l'input portant l'id' #inputMotCleFilter -->
 				</div>
-				<div class="col-md-4">
-					<label>Filtrer par catégorie (prochainement)</label>
-					<select #categorieFilter (keyup)="0" class="form-control">
+				<!--<div class="col-md-4">
+					<label>Filtrer par catégorie (prochainement)</label>-->
+					<!--<input #selectCategorieFilter (keyup)="0" class="form-control">-->
+				<!--<select #selectCategorieFilter (keyup)="0" class="form-control">
+                        <option></option>  
+						<option value ="Sushi">Sushi</option>
+						<option value ="Maki">Maki</option>
+						<option value ="Spring roll">Spring Roll</option>
+						<option value ="California roll">California Roll</option>
+				</select>-->
+					<!--<select #categorieFilter (keyup)="0" class="form-control">
                         <option></option>  
 						<option value ="1">Sushi</option>
 						<option value ="2">Maki</option>
 						<option value ="3">Spring Roll</option>
 						<option value ="4">California Roll</option>
-					</select>
-				</div>
-				<div class="col-md-4">				
+					</select>-->
+
+				<!--</div>-->
+				<!--<div class="col-md-4">				
 					<label>Filtrer par promotion (prochainement)</label>
 					<select class="form-control" id="">
                         <option></option>>        
@@ -24,15 +34,15 @@
 						<option value ="3">15%</option>
 						<option value ="4">20%</option>
 					</select>
-				</div>
+				</div>-->
 			</div>
 		</div>
 		<!-- / Filtres de tri -->    	
         
-        <!-- Ligne (row) avec 4 vignettes -->       
+         <!--Ligne (row) avec 4 vignettes -->       
         <div class="row text-center">
 
-            <!--<div *ngFor="let p of produits | motCleFilter:inputMotCleFilter.value | categorieFilter:categorieFilter.value" class="col-md-3 col-sm-6 hero-feature">-->
+            <!--<div *ngFor="let p of produits | categorieFilter:selectCategorieFilter.value" class="col-md-3 col-sm-6 hero-feature">-->
 			<div *ngFor="let p of produits | motCleFilter:inputMotCleFilter.value" class="col-lg-3 col-md-6 hero-feature">
                 <div class="thumbnail">
                     <img src="assets/{{p.image}}" alt="{{p.image_alt}}">
@@ -44,11 +54,14 @@
 							<h4 *ngIf="p.stock == 0" class="h5-rupture-stock">Rupture de stock</h4>
 						</div>	
                         <p class="p-avec-boutons">
-                            <button type="button" class="btn btn-ajout-panier" (click)="ajoutPanier(p)" [disabled]="p.stock == 0">Ajouter</button> <a [routerLink]="['/detailproduit', p.id]" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Détails</a>
+                            <!--<button type="button" class="btn btn-ajout-panier" (click)="ajoutPanier(p)" [disabled]="p.stock == 0">Ajouter</button>-->
+							<button type="button" class="btn btn-ajout-panier" [@produitState]="p.statut" (click)="ajoutPanier(p)" [disabled]="p.stock == 0">Ajouter</button>
+							<a [routerLink]="['/detailproduit', p.id]" class="btn btn-default">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Détails</a>
                         </p>
                     </div>
                 </div>
             </div>
-			
+		
         </div>
         <!-- /.row -->

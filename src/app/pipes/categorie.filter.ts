@@ -7,14 +7,12 @@ import {Pipe, PipeTransform} from '@angular/core'; // imports de Pipe et PipeTra
 })
 
 export class CategoriePipe implements PipeTransform{
-   
-    transform(value: any, ...args: any[]): any { // utilisation methode transform dans la classe ItemPipe
+       transform(value: any, ...args: any[]): any { // utilisation methode transform dans la classe ItemPipe
         //console.log(value);
         //console.log(args[0]);
         let filtre = args[0].toLowerCase(); // passer en minuscules
         // return tableau à partir de la collection filtrée
-        // return filtre ? value.filter(produitTrie => produitTrie.libelle.toLowerCase().indexOf(filtre) != -1) : value; // fonction filter() de javascript
-        return filtre ? value.filter(produitTrie => produitTrie.id_categorie.toLowerCase().indexOf(filtre) != -1) : value; // fonction filter() de javascript    
-        
+        return filtre ? value.filter(produitTrie => produitTrie.id_categorie.libelle[0].toLowerCase().indexOf(filtre) != -1) : value; // fonction filter() de javascript
     }
+
 }

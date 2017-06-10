@@ -9,6 +9,7 @@ export class Produit{
     image: string;
     image_alt: string;
 
+
     constructor(id : number = 0, 
                 nom:string = "?",
                 libelle:string = "?",
@@ -29,4 +30,15 @@ export class Produit{
         this.image = image;
         this.image_alt = image_alt;
      } 
+
+
+     // pour animation
+     // animation sur boton Ajouter :
+      public toggle: boolean;
+      public statut : any;
+    
+      public toggleState() {
+        this.toggle = !this.toggle;
+        this.statut = this.toggle ? 'active':'inactive';
+      }
 } 
