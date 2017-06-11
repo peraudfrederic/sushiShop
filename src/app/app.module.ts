@@ -23,6 +23,7 @@ import { MotClePipe } from "app/pipes/motCle.filter";
 import { CategoriePipe } from "app/pipes/categorie.filter";
 import { PanierService } from "app/service/panier.service";
 import { PaiementComponent } from "app/paiement.component";
+import { CommandeService } from "app/service/commande.service";
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { PaiementComponent } from "app/paiement.component";
   ],
   providers: [ProduitService, // ajout de ProduitService (sinon ne sera pas injecté)
               UserService,
-              PanierService],
+              PanierService,
+              CommandeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
