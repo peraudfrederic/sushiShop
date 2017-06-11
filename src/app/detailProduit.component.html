@@ -13,7 +13,7 @@
 				
 				<p>{{produitSelectionne.description}}</p>
 				
-				<p class="detail-produit-btn-ajout"><button class="btn btn-ajout-panier" (click)="ajoutPanier(p)" [disabled]="produitSelectionne.stock == 0">Ajouter au panier</button></p>
+				<p class="detail-produit-btn-ajout"><button class="btn btn-ajout-panier" [@produitState]="produitSelectionne.statut" (click)="ajoutPanier(produitSelectionne)" [disabled]="produitSelectionne.stock == 0">Ajouter au panier</button></p>
 			
 			</div>
 		</div>

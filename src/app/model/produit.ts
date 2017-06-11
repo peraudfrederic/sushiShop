@@ -41,4 +41,5 @@ export class Produit{
         this.toggle = !this.toggle;
         this.statut = this.toggle ? 'active':'inactive';
       }
+      // fin animation
 } 
