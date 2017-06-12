@@ -1,7 +1,13 @@
 
 		<div class="row div-title-page">
-				<h2>Connection</h2>	
+				<h2>Connexion</h2>	
 		</div>
+
+		<!-- Message de redirection  -->
+		<div *ngIf="redirectionMsg" class="alert alert-warning alert-dismissible" role="alert">
+   			<strong>{{redirectionMsg}}</strong>
+		</div>
+		<!-- fin Message d'erreur -->
 
 		<!-- Message d'erreur -->
 		<div *ngIf="errorMsg" class="alert alert-warning alert-dismissible" role="alert">

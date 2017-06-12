@@ -13,18 +13,22 @@ import { PanierComponent } from "app/panier.component";
 import { DetailProduitComponent } from "app/detailProduit.component";
 import { DetailCommandeComponent } from "app/detailCommande.component";
 import { PaiementComponent } from "app/paiement.component";
+import { AuthGuard } from "app/guard/auth.guard";
+import { AdminGuard } from "app/guard/admin.guard";
+import { AdminComponent } from "app/admin.component";
 
 export const appRoutes: Routes = [
     {path: '', redirectTo: 'accueil', pathMatch: 'full'},
     {path: 'accueil', component: AccueilComponent},
     {path: 'connexion', component: ConnexionComponent},
-    {path: 'deconnexion', component: DeconnexionComponent},    
+    {path: 'deconnexion', component: DeconnexionComponent, canActivate: [AuthGuard]},    
     {path: 'inscription', component: InscriptionComponent},
-    {path: 'profil', component: ProfilComponent},
+    {path: 'profil', component: ProfilComponent, canActivate: [AuthGuard]},
     {path: 'panier', component: PanierComponent},
     {path: 'detailproduit/:id', component: DetailProduitComponent}, // on lie le parametre "id"
-    {path: 'detailcommande/:id', component: DetailCommandeComponent},
-    {path: 'paiement', component: PaiementComponent}
+    {path: 'detailcommande/:id', component: DetailCommandeComponent, canActivate: [AuthGuard]},
+    {path: 'paiement', component: PaiementComponent, canActivate: [AuthGuard]},
+    {path: 'admin', component: AdminComponent, canActivate: [AdminGuard]}
 ]
 
 @NgModule({

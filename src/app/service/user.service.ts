@@ -16,6 +16,12 @@ export class UserService{
     public isConnected : boolean;
     public isConnectedBSubject :BehaviorSubject<boolean> = new BehaviorSubject(false);
 
+    public isAdmin : boolean;
+    public isAdminBSubject :BehaviorSubject<boolean> = new BehaviorSubject(false);
+
+    redirectionMsg : String; // message qui s'affichera au dessus de la fenetre de login
+    public redirectionMsgBSubject :BehaviorSubject<String> = new BehaviorSubject("");
+
     constructor(private _http : Http){
         // _http injecté ici servira à appeler des WS REST
         //this.isConnected = this.isConnected();
@@ -58,7 +64,7 @@ export class UserService{
         }
 
         this.updateIsUserConnected();
-        //this.isConnected2 = this.isConnected();
+        this.updateRedirectionMsg("");
     }
 
     public unstoreLocalUser() {
@@ -66,19 +72,27 @@ export class UserService{
         localStorage.removeItem('currentUser');
 
         this.updateIsUserConnected();
+        this.updateRedirectionMsg("");
     }
 
     private updateIsUserConnected() : void {
         let isConnected = false;
+        let isAdmin = false;
         // on relit le localstorage pour s'assurer qu'il a bien été enregistré
         let usr = JSON.parse(localStorage.getItem('currentUser'));
         // on verifit qu'un "user est valide"
         if(usr && usr.mdp != "")
+        {
             isConnected = true;
+            if(usr.isAdmin)
+                isAdmin = true;
+        }
 
         // on previent tous le monde du changement
         this.isConnected = isConnected;
         this.isConnectedBSubject.next(this.isConnected);
+        this.isAdmin = isAdmin;
+        this.isAdminBSubject.next(this.isAdmin);
     }
 
     public getUserName() : string {
@@ -97,6 +111,11 @@ export class UserService{
             id = usr.id;
 
         return id;
+    }
+
+    public updateRedirectionMsg(redirectionMsg : String) : void {
+        this.redirectionMsg = redirectionMsg;
+        this.redirectionMsgBSubject.next(this.redirectionMsg);
     }
 
 }
