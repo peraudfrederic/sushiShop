@@ -15,6 +15,7 @@ export class NavbarComponent {
     // @Input() item: Item; // on crée une entité réutilisable dans d'autres composants
 
     private isConnected : boolean;
+    private isAdmin : boolean;
     private nbrProduit : number;
 
     constructor(private _userService : UserService, private _panierService : PanierService){ // _userService est injecté ici via angular
@@ -25,6 +26,10 @@ export class NavbarComponent {
       // on s'abonne pour être notifier à chaque changement de la variable isConnected qui viendrait d'une autre page
       this._userService.isConnectedBSubject.subscribe(
           isConnected => this.isConnected=isConnected);
+
+      // on s'abonne pour être notifier à chaque changement de la variable isAdmin qui viendrait d'une autre page
+      this._userService.isAdminBSubject.subscribe(
+          isAdmin => this.isAdmin=isAdmin);
 
       // on s'abonne pour être notifier à chaque changement du nombre d'article dans le panier
       this._panierService.nombreDeProduitBSubject.subscribe(

@@ -25,6 +25,9 @@ import { PanierService } from "app/service/panier.service";
 import { PaiementComponent } from "app/paiement.component";
 import { CommandeService } from "app/service/commande.service";
 import { LigneCommandeService } from "app/service/ligneCommande.service";
+import { AuthGuard } from "app/guard/auth.guard";
+import { AdminGuard } from "app/guard/admin.guard";
+import { AdminComponent } from "app/admin.component";
 
 
 @NgModule({
@@ -44,7 +47,8 @@ import { LigneCommandeService } from "app/service/ligneCommande.service";
     DetailCommandeComponent,
     PaiementComponent,
     MotClePipe, // filtre
-    CategoriePipe // filtre
+    CategoriePipe, // filtre
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,9 @@ import { LigneCommandeService } from "app/service/ligneCommande.service";
               UserService,
               PanierService,
               CommandeService,
-              LigneCommandeService],
+              LigneCommandeService,
+              AuthGuard,
+              AdminGuard,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
