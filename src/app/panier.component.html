@@ -72,11 +72,20 @@
 							</tr>
 						  </tbody>
 					</table>
-					
+
 					<div class="text-right">
+						<button type="button" (click)="viderPanier()" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
 						<button type="button" (click)="validerPanier()" class="btn btn-primary" [disabled]="isConnected == false">Valider le panier</button>
-						<button type="button" (click)="viderPanier()" class="btn btn-primary">Vider le panier</button>
 					</div>
+
+					<!--<div class="div-boutons-panier">
+						<div class="bouton-gauche">
+							<button type="button" (click)="viderPanier()" class="btn btn-primary">Vider le panier</button>
+						</div>
+						<div class="bouton-droit text-right">
+							<button type="button" (click)="validerPanier()" class="btn btn-primary" [disabled]="isConnected == false">Valider le panier</button>
+						</div>	
+					</div>-->
 	
 			</div>
 			

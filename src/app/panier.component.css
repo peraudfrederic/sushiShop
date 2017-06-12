@@ -1,3 +1,14 @@
 .panier{
     min-height: 380px;
 }
+
+/*.bouton-gauche, .bouton-droit{
+    width: 49.5%;
+    display: inline-block;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.div-boutons-panier .btn.btn-primary{
+    width: 126px;
+}*/
