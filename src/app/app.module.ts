@@ -24,6 +24,7 @@ import { CategoriePipe } from "app/pipes/categorie.filter";
 import { PanierService } from "app/service/panier.service";
 import { PaiementComponent } from "app/paiement.component";
 import { CommandeService } from "app/service/commande.service";
+import { LigneCommandeService } from "app/service/ligneCommande.service";
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { CommandeService } from "app/service/commande.service";
   providers: [ProduitService, // ajout de ProduitService (sinon ne sera pas injecté)
               UserService,
               PanierService,
-              CommandeService],
+              CommandeService,
+              LigneCommandeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

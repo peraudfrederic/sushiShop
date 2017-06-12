@@ -1,4 +1,8 @@
-import { Component } from '@angular/core'; 
+import { Component, Input } from '@angular/core'; 
+import { Commande } from "app/model/commande";
+import { ActivatedRoute } from "@angular/router";
+import { LigneCommandeService } from "app/service/ligneCommande.service";
+import { LigneCommande } from "app/model/ligneCommande";
 
 // @Component pour déclarer notre composant avec un sélector, un template html et un styleUrl
 @Component({
@@ -8,6 +12,17 @@ import { Component } from '@angular/core';
 })
 
 export class DetailCommandeComponent {
-    // // 10.2.4 creer @Input () item qu'on va pouvoir utiliser comme référence dans le template app.component.html
-    // @Input() item: Item; // on crée une entité réutilisable dans d'autres composants
+    id : number; // id de la commande a afficher
+    @Input() lignesCommande : LigneCommande[]; // commande selectionnée à afficher
+    
+    constructor(private _ligneCommandeService : LigneCommandeService, private route: ActivatedRoute){} // _produitService est injecté ici via angular    
+
+    ngOnInit(): void {
+       this.id = this.route.snapshot.params['id']; // on recupere l'id passe en parametre dans URL
+       //console.log(this.id); 
+
+       this._ligneCommandeService.afficherAllLignesCommandesByCommande(this.id)
+        .subscribe(lignesCommande => {this.lignesCommande = lignesCommande; },
+                 e => console.log(e.message));
+    }
 }
