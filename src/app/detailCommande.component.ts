@@ -12,8 +12,11 @@ import { LigneCommande } from "app/model/ligneCommande";
 })
 
 export class DetailCommandeComponent {
-    id : number; // id de la commande a afficher
-    @Input() lignesCommande : LigneCommande[]; // commande selectionnée à afficher
+    private id : number; // id de la commande a afficher
+    private lignesCommande : LigneCommande[]; // commande selectionnée à afficher
+    private montantTTC : number;
+    private montantHT : number;
+    private TVA : number;
     
     constructor(private _ligneCommandeService : LigneCommandeService, private route: ActivatedRoute){} // _produitService est injecté ici via angular    
 
@@ -22,7 +25,36 @@ export class DetailCommandeComponent {
        //console.log(this.id); 
 
        this._ligneCommandeService.afficherAllLignesCommandesByCommande(this.id)
-        .subscribe(lignesCommande => {this.lignesCommande = lignesCommande; },
+         .subscribe(lgnesCommande => {this.lignesCommande = lgnesCommande;
+        this.afficherMontants() ; }, // afficherMontants() doit etre appelee dans subscribe sinon probleme asynchrone
                  e => console.log(e.message));
+ 
     }
+      public getMontantTTC() : number {
+        let montant = 0.0;
+        this.lignesCommande.forEach(ligne => {
+                montant += ligne.prix * ligne.quantite;                
+            });       
+
+        return montant;
+    }
+
+    public getMontantHT() : number {
+      let montant = this.getMontantTTC();
+        let taux = 100 - this.getTVA();
+        montant *= taux;
+        montant /= 100;
+        return montant;
+    }
+
+    public getTVA() : number {
+        return 5.5;
+    } 
+
+    private afficherMontants() : void {
+       this.TVA = this.getTVA();
+       this.montantTTC = this.getMontantTTC();
+       this.montantHT = this.getMontantHT();
+    }
+
 }
