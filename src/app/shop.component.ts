@@ -35,7 +35,7 @@ export class ShopComponent implements OnInit {
 
   @Input() produitTrie: Produit; // on crée une entité réutilisable dans d'autres composants
   
-   produits: Produit[]; // pour preparer l'affichage (sera vu par la page html) 
+   produits: Produit[]; // pour preparer l'affichage de tous les produits (sera vu par la page html) 
      
    constructor(private _produitService : ProduitService, private _panierService : PanierService){ } // _produitService est injecté ici via angular
   
