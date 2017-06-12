@@ -75,7 +75,7 @@
 
 					<div class="text-right">
 						<button type="button" (click)="viderPanier()" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-						<button type="button" (click)="validerPanier()" class="btn btn-primary" [disabled]="isConnected == false">Valider le panier</button>
+						<button type="button" (click)="validerPanier()" class="btn btn-primary" [disabled]="montantTTC == 0">Valider le panier</button>
 					</div>
 
 					<!--<div class="div-boutons-panier">
