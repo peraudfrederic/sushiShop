@@ -1,8 +1,7 @@
 
 		<div class="row div-title-page">
-			<h2>Détail de la commande référence #</h2>
+			<h2>Détail de la commande référence {{id}}</h2>
 			<hr>
-			<h4>Date : 03/06/2017</h4>
 		</div>
 
 		<div class="row">			
@@ -12,40 +11,27 @@
 					<table class="table">
 						  <thead class="thead-inverse">
 							<tr>
-							  <th>LIbellé</th>
-							  <th>Prix</th>
-							  <th class="text-right">Quantité</th>
-							  <th class="text-right">Montant</th>
+							  <th>Produit</th>
+							  <th>Quantité</th>
+							  <th>Montant</th>
 							</tr>
 						  </thead>
-						  <tbody>
+						  <tbody *ngFor="let lc of lignesCommande">
 							<tr>
-								<td>Sushi crevette</td>
-								<td>1,79</td>
-								<td class="text-right">6</td>
-								<td class="text-right">10,75</td>
+								<td>{{lc.id_produit.libelle}}</td>
+								<td>{{lc.quantite}}</td>
+								<td>{{lc.prix}}</td>
 							</tr>
-							<tr>
-								<td>Sushi thon</td>							
-								<td>1,94</td>							
-								<td class="text-right">3</td>
-								<td class="text-right">5,82</td>
-							</tr>
-							<tr>
-								<td>Spring roll</td>
-								<td>3,50</td>
-								<td class="text-right">1</td>	
-								<td class="text-right">3,50</td>	
-							</tr>
-							<tr class="bg-info">
-								<td colspan="3"><strong>Montant TVA:</strong></td><!-- Montant TVA = (0,2/1,2) x TTC -->
-								<td class="text-right">3,30 €</td>
-							</tr>
-							<tr class="bg-primary">
-								<td colspan="3"><strong>TOTAL TTC :</strong></td>
-								<td class="text-right">19,82 €</td>
-							</tr>							
-
+						  </tbody>
+							<tbody>
+								<tr class="bg-info">
+									<td colspan="2"><strong>Montant TVA:</strong></td><!-- Montant TVA = (0,2/1,2) x TTC -->
+									<td>0000</td>
+								</tr>
+								<tr class="bg-primary">
+									<td colspan="2"><strong>TOTAL TTC :</strong></td>
+									<td>0000</td>
+								</tr>				
 						  </tbody>
 					</table>
 	

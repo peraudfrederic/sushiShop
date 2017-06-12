@@ -23,7 +23,7 @@ export const appRoutes: Routes = [
     {path: 'profil', component: ProfilComponent},
     {path: 'panier', component: PanierComponent},
     {path: 'detailproduit/:id', component: DetailProduitComponent}, // on lie le parametre "id"
-    {path: 'detailcommande', component: DetailCommandeComponent},
+    {path: 'detailcommande/:id', component: DetailCommandeComponent},
     {path: 'paiement', component: PaiementComponent}
 ]
 
