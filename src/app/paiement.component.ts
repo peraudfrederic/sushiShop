@@ -30,11 +30,10 @@ export class PaiementComponent {
     private onValiderPaiement() : void {
       // mettre l'id user connecter
       let userID = this._userService.getUserId();
-      this.panierForWS.forEach( ligne => {ligne.idUser = userID});
 
       // appel webservice pour persister la commande
-      this._panierService.EnvoyerPanier().subscribe(
-        pnr => {this._router.navigate(['/accueil']); this.errorMsg = ""; },
+      this._panierService.EnvoyerPanier(userID).subscribe(
+        pnr => {this._router.navigate(['/accueil']); this.errorMsg = ""; this._panierService.vider(); },
                  e => { console.log(e.message); this.errorMsg = "Erreur lors du paiement. Merci de réessayer ulterieurement" });
 
     }

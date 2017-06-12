@@ -98,10 +98,11 @@ export class PanierService{
         return 5.5;
     }
 
-    public EnvoyerPanier() : Observable<PanierLigneWS> {
+    public EnvoyerPanier(userID : number) : Observable<PanierLigneWS> {
         let urlWS : string = "http://localhost:8080/sushiShop/services/rest/commandes/panier";
         
         this.getForWS();
+        this.panierForWS.forEach( ligne => {ligne.idUser = userID});
 
         return this._http.post(urlWS, JSON.stringify(this.panierForWS), {headers: this._headers}).map(response => response.json())
                         .catch(e => Observable.throw('error: '+ e));    
