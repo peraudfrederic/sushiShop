@@ -36,5 +36,12 @@ export class NavbarComponent {
           nombreDeProduit => this.nbrProduit=nombreDeProduit);
     }
 
-
+     // pour faire marcher le menu mobile de Bootstrap 
+     // + dans html ajouter [ngClass]="{ 'in': isIn }" sur <div class="collapse navbar-collapse">
+     // + dans html ajouter (click)="toggleState()" sur <button type="button" class="navbar-toggle collapsed"  
+    isIn = false;   // store state
+    toggleState() { // click handler
+        let bool = this.isIn;
+        this.isIn = bool === false ? true : false; 
+    }
 }

@@ -1,11 +1,14 @@
-.navbar-header{
-	border: 1px solid transparent; /* annule la fusion des marges */
+.navbar{
+	border: none;
 }
 
-.navbar-inverse{
-	border-color: transparent; 
-	border: 1px solid transparent; /* annule la fusion des marges */
-}
+/*.navbar-header{
+	border: 1px solid transparent;  annule la fusion des marges 
+}*/
+
+/*.navbar-inverse{
+	border: 1px solid transparent;  annule la fusion des marges 
+}*/
 
 /* logo navbar */
 .img-logo{
@@ -20,4 +23,22 @@
 .c2{
 	/*background-color: blue;*/
 	color: blue;
+}
+
+/* menu - onglet panier */
+.navbar-inverse .navbar-nav > .active > a{
+	background-color: transparent; /* on annule le bg de la classe bootstrap */
+}
+
+/* menu - onglet panier */
+.active.onglet-panier{
+	background-color: #f17036;
+	border-radius: 10px;
+	margin-top: 10px;	
+	/*border: 1px solid OrangeRed;*/
+}
+
+.active.onglet-panier a{
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
