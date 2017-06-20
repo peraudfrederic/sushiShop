@@ -12,3 +12,25 @@
 .div-boutons-panier .btn.btn-primary{
     width: 126px;
 }*/
+
+.div-ajuster-quantites{
+    width: 75px;
+}
+
+
+.div-ajuster-quantites input, 
+.div-ajuster-quantites button{
+    width: 25px;
+    font-size: 13px;
+    text-align: center;
+
+}
+
+.div-ajuster-quantites .input-group-addon{
+    font-size: 12px;
+    padding: 4px;
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
