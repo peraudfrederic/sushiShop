@@ -4,6 +4,7 @@ import { PanierLigneWS } from "app/model/panierLigneWS";
 import { PanierLigneAff } from "app/model/panierLigneAff";
 import { UserService } from "app/service/user.service";
 import { Router } from '@angular/router';
+import { Produit } from "app/model/produit";
 
 // @Component pour déclarer notre composant avec un sélector, un template html et un styleUrl
 @Component({
@@ -31,9 +32,14 @@ export class PanierComponent {
       // on s'abonne pour être notifier à chaque changement de la variable isConnected qui viendrait d'une autre page
       this._userService.isConnectedBSubject.subscribe(
           isConnected => this.isConnected=isConnected);
-          
-       this.updatePanier();
-       this.updateMontant();
+
+      // on s'abonne pour être notifier à chaque changement du nombre d'article dans le panier
+      this._panierService.panierForAffBSubject.subscribe(
+         panierForAff => this.panierForAff=panierForAff);
+
+      this.updatePanier();
+      this.updateMontant();
+
     }
 
     private viderPanier() : void {
@@ -57,6 +63,19 @@ export class PanierComponent {
        this._router.navigate(['/paiement']);
     }
 
+    // private augmenterNombreProduit(panierLigneAff : PanierLigneAff) : void {
+    //   this._panierService.quantitePlus(panierLigneAff);
+    //   this.updateMontant(); // on met a jour le montant TTC et HT
+    // }
 
+    private augmenterNombreProduit(produit : Produit) : void {
+      this._panierService.Ajouter(produit);
+      this.updateMontant(); // on met a jour le montant TTC et HT
+    }
+
+    private diminuerNombreProduit(panierLigneAff : PanierLigneAff) : void {
+      this._panierService.quantiteMoins(panierLigneAff);
+      this.updateMontant(); // on met a jour le montant TTC et HT
+    }
 
 }
