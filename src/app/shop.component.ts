@@ -35,15 +35,16 @@ export class ShopComponent implements OnInit {
 
   @Input() produitTrie: Produit; // on crée une entité réutilisable dans d'autres composants
   
-   produits: Produit[]; // pour preparer l'affichage de tous les produits (sera vu par la page html) 
-     
-   constructor(private _produitService : ProduitService, private _panierService : PanierService){ } // _produitService est injecté ici via angular
+  produits: Produit[]; // pour preparer l'affichage de tous les produits (sera vu par la page html) 
+  
+
+  constructor(private _produitService : ProduitService, private _panierService : PanierService){ } // _produitService est injecté ici via angular
   
   // ngOnInit : dès que le composant est visuellement prêt, je declenche une requete qui declenche un observable qui permet une requete asynchrone
   ngOnInit(): void {     
     this._produitService.afficherAllProduits()
         .subscribe(listeProd => {this.produits = listeProd; },
-                 e => console.log(e.message)); 
+                 e => console.log(e.message));    
   }
 
   private ajoutPanier(produit : Produit) : void {
@@ -53,7 +54,6 @@ export class ShopComponent implements OnInit {
      setTimeout(() => this.toggleState(produit), 100);
      //this.toggleState();     
   }
-
   
   // animation sur boton Ajouter :
   toggle: boolean;

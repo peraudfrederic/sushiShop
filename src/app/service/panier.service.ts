@@ -18,7 +18,7 @@ export class PanierService{
     public nombreDeProduit : number;
     public nombreDeProduitBSubject :BehaviorSubject<number> = new BehaviorSubject(0);
 
-//==============================================================================
+
     constructor(private _http : Http){
         // _http injecté ici servira à appeler des WS REST
 
@@ -31,19 +31,19 @@ export class PanierService{
         this.updateNombreDeProduit();
     }
 
-//==============================================================================
+
     private updateNombreDeProduit() : void {
         // on previent tout le monde
         this.nombreDeProduitBSubject.next(this.nombreDeProduit);
     }
 
-//==============================================================================    
+  
     private updatePanierForAff() : void {
               // on previent tout le monde
         this.panierForAffBSubject.next(this.panierForAff);
     }
 
-//==============================================================================    
+    
     public Ajouter(produit : Produit) : void {
                 
         this.AjouterForWS(produit);
@@ -54,7 +54,7 @@ export class PanierService{
         this.updateNombreDeProduit();            
     }
 
-//==============================================================================
+
     public vider() : void {
         localStorage.removeItem('currentPanierWS');
         localStorage.removeItem('currentPanierAff');
@@ -64,7 +64,7 @@ export class PanierService{
         this.updateNombreDeProduit();
     }
 
-//==============================================================================
+
     public getForWS() : Array <PanierLigneWS> {
         
         this.panierForWS = JSON.parse(localStorage.getItem('currentPanierWS'));
@@ -75,7 +75,7 @@ export class PanierService{
         return this.panierForWS;
     }
 
-//==============================================================================
+
     public getForAff() : Array <PanierLigneAff> {
         
         this.panierForAff = JSON.parse(localStorage.getItem('currentPanierAff'));
@@ -83,7 +83,7 @@ export class PanierService{
         return this.panierForAff;
     }
 
-//==============================================================================
+
     public getMontantTTC() : number {
         let montant = 0.0;
         this.panierForAff = JSON.parse(localStorage.getItem('currentPanierAff'));
@@ -97,7 +97,7 @@ export class PanierService{
         return montant;
     }
 
-//==============================================================================
+
     public getMontantHT() : number {
         let montant = this.getMontantTTC();
         let taux = 100 - this.getTVA();
@@ -106,12 +106,12 @@ export class PanierService{
         return montant;
     }
 
-//==============================================================================
+
     public getTVA() : number {
         return 5.5;
     }
 
-//==============================================================================
+
     public EnvoyerPanier(userID : number) : Observable<PanierLigneWS> {
         let urlWS : string = "http://localhost:8080/sushiShop/services/rest/commandes/panier";
         
@@ -122,7 +122,7 @@ export class PanierService{
                         .catch(e => Observable.throw('error: '+ e));    
     }
 
-//==============================================================================
+
     private AjouterForWS(produit : Produit) : void {
     
         // on lit le panier en memoire
@@ -158,7 +158,7 @@ export class PanierService{
         localStorage.setItem('currentPanierWS', JSON.stringify(this.panierForWS));
     }
 
-//==============================================================================
+
     private AjouterForAff(produit : Produit) : void {
     
         this.panierForAff = JSON.parse(localStorage.getItem('currentPanierAff'));
@@ -171,7 +171,7 @@ export class PanierService{
         // si deja un même produit dans le panier, on augmente la quantité
         let produitDejaPresent = 0;
         this.panierForAff.forEach(ligne => {
-            if(ligne.libelle == produit.libelle)
+            if(ligne.produit.libelle == produit.libelle)
             {
                 ligne.quantite += 1;
                 produitDejaPresent += 1;
@@ -182,7 +182,7 @@ export class PanierService{
         // sinon, on ajoute au panier
         if(produitDejaPresent == 0) 
         {
-            this.panierForAff.push(new PanierLigneAff(produit.id, produit.libelle, 1, produit.prix, produit));
+            this.panierForAff.push(new PanierLigneAff(produit, 1));
         }
 
         // on enregistre le panier en local
@@ -192,65 +192,16 @@ export class PanierService{
         this.updatePanierForAff(); 
     }
 
-//==============================================================================  
-    // public quantitePlus(panierLigneAff : PanierLigneAff){
-        
-    //     // Traitement pour panierForWS : ----------------------------------
 
-    //     this.panierForWS = JSON.parse(localStorage.getItem('currentPanierWS')); // on lit le panier en memoire
-
-    //     console.log(this.panierForWS);
-
-    //     // ou on met le panier en memoire
-    //     if( !this.panierForWS)
-    //     {
-    //         this.panierForWS = new Array <PanierLigneWS>();
-    //     }
-
-    //     // on augmente la quantité
-    //     this.panierForWS.forEach(ligne => {
-    //         if(ligne.idProduit == panierLigneAff.id)
-    //         {
-    //             ligne.quantite += 1;
-    //         }
-                
-    //     });
-
-    //     // on enregistre le panier en local
-    //     localStorage.setItem('currentPanierWS', JSON.stringify(this.panierForWS));
-
-
-    //     // Traitement pour panierForAff : -------------------------------
-
-    //     this.panierForAff = JSON.parse(localStorage.getItem('currentPanierAff')); // on lit le panier en memoire
-        
-    //     // ou on met le panier en memoire
-    //     if( !this.panierForAff)
-    //     {
-    //         this.panierForAff = new Array <PanierLigneAff>();
-    //     }
-
-    //     // on augmente la quantité
-    //     this.panierForAff.forEach(ligne => {
-    //         if(ligne.libelle == panierLigneAff.libelle)
-    //         {
-    //             ligne.quantite += 1;
-    //         }
-                
-    //     });
-
-    //     // on enregistre le panier en local
-    //     localStorage.setItem('currentPanierAff', JSON.stringify(this.panierForAff));
-
-    //     this.updatePanierForAff(); // on met a jour l'affichage du panier
-
-    // }
-
-//============================================================================== 
     // diminuer les quantites du produit deja ajoute au panier :
-    public quantiteMoins(panierLigneAff : PanierLigneAff) : void{
+    public Retirer(produit : Produit) : void{
         
-        // Traitement pour panierForWS : ----------------------------------
+        this.RetirerForWS(produit);
+        this.RetirerForAff(produit);
+        this.updatePanierForAff(); // on met a jour l'affichage du panier
+    }
+
+    private RetirerForWS(produit : Produit){             
 
         this.panierForWS = JSON.parse(localStorage.getItem('currentPanierWS')); // on lit le panier en memoire
 
@@ -264,7 +215,7 @@ export class PanierService{
 
         // on diminue la quantité
         this.panierForWS.forEach(ligne => {
-            if(ligne.idProduit == panierLigneAff.id)
+            if(ligne.idProduit == produit.id)
             {
                 ligne.quantite -= 1;
 
@@ -276,15 +227,14 @@ export class PanierService{
                     this.nombreDeProduit -= 1;
                     this.updateNombreDeProduit();
                 }
-            }
-                
+            }                
         });
 
         // on enregistre le panier en local
         localStorage.setItem('currentPanierWS', JSON.stringify(this.panierForWS));
-
-
-        // Traitement pour panierForAff : -------------------------------
+    }
+    
+    private RetirerForAff(produit : Produit){
 
         this.panierForAff = JSON.parse(localStorage.getItem('currentPanierAff')); // on lit le panier en memoire
         
@@ -296,7 +246,7 @@ export class PanierService{
 
         // on diminue la quantité
         this.panierForAff.forEach(ligne => {
-            if(ligne.libelle == panierLigneAff.libelle)
+            if(ligne.produit.libelle == produit.libelle)
             {
                 ligne.quantite -= 1;
                 if(ligne.quantite == 0){ // si en diminuant les quantites on arrive à "0 produit" dans le panier
@@ -304,16 +254,11 @@ export class PanierService{
                     // array.splice(2, 1): on retire 1 élément situé à l'indice 2
                     this.panierForAff.splice(this.panierForAff.indexOf(ligne),1); // indexOf pour connaitre l'indice de l'element dans le tableau
                 }
-            }
-                
+            }                
         });
 
         // on enregistre le panier en local
         localStorage.setItem('currentPanierAff', JSON.stringify(this.panierForAff));
-
-        this.updatePanierForAff(); // on met a jour l'affichage du panier
     }
-    
-    //**************************************************************************************
     
 }

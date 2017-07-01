@@ -63,18 +63,13 @@ export class PanierComponent {
        this._router.navigate(['/paiement']);
     }
 
-    // private augmenterNombreProduit(panierLigneAff : PanierLigneAff) : void {
-    //   this._panierService.quantitePlus(panierLigneAff);
-    //   this.updateMontant(); // on met a jour le montant TTC et HT
-    // }
-
     private augmenterNombreProduit(produit : Produit) : void {
       this._panierService.Ajouter(produit);
       this.updateMontant(); // on met a jour le montant TTC et HT
     }
 
-    private diminuerNombreProduit(panierLigneAff : PanierLigneAff) : void {
-      this._panierService.quantiteMoins(panierLigneAff);
+    private diminuerNombreProduit(produit : Produit) : void {
+      this._panierService.Retirer(produit);
       this.updateMontant(); // on met a jour le montant TTC et HT
     }
 

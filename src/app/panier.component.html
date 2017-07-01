@@ -17,18 +17,18 @@
 						  </thead>
 						  <tbody *ngFor="let l of panierForAff">
 							<tr>
-								<td>{{l.libelle}}</td>
-								<td>{{l.prix}}</td>
+								<td>{{l.produit.libelle}}</td>
+								<td>{{l.produit.prix}}</td>
 								<!--<td class="text-right">{{l.quantite}}</td>-->
 								<td align="right">
 									<div class="input-group div-ajuster-quantites">
-    									<button type="button" class="input-group-addon btn btn-primary" (click)="diminuerNombreProduit(l)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+    									<button type="button" class="input-group-addon btn btn-primary" (click)="diminuerNombreProduit(l.produit)"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
     									<input type="text" class="" value="{{l.quantite}}">
-										<button type="button" class="input-group-addon btn btn-primary" (click)="augmenterNombreProduit(l)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+										<button type="button" class="input-group-addon btn btn-primary" (click)="augmenterNombreProduit(l.produit)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
   									</div>
 								</td>
 								<!--<td class="text-right">{{l.montant}}</td>-->
-								<td class="text-right">{{l.prix * l.quantite | number:'1.2-2'}}</td>
+								<td class="text-right">{{l.produit.prix * l.quantite | number:'1.2-2'}}</td>
 							</tr>
 							<!--
 							<tr>

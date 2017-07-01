@@ -40,5 +40,4 @@ export class ProduitService{
         return this._http.get(urlWS).map(response => response.json())
                         .catch(e => Observable.throw('error: '+ e));          
     }
-
 }
