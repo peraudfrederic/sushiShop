@@ -18,6 +18,8 @@ export class PanierService{
     public nombreDeProduit : number;
     public nombreDeProduitBSubject :BehaviorSubject<number> = new BehaviorSubject(0);
 
+    public stockMessErr : String; // message d'erreur a afficher si stock insuffisant
+
 
     constructor(private _http : Http){
         // _http injecté ici servira à appeler des WS REST
@@ -44,14 +46,14 @@ export class PanierService{
     }
 
     
-    public Ajouter(produit : Produit) : void {
-                
+    public Ajouter(produit : Produit) : void{
+
         this.AjouterForWS(produit);
-        this.AjouterForAff(produit);  
+        this.AjouterForAff(produit); 
 
         // on previent tout le monde
         // l'increment du nombre de produit n'est fait qu'1 seule fois dans AjouterForWS
-        this.updateNombreDeProduit();            
+        this.updateNombreDeProduit();      
     }
 
 
@@ -123,7 +125,7 @@ export class PanierService{
     }
 
 
-    private AjouterForWS(produit : Produit) : void {
+    private AjouterForWS(produit : Produit) : void {        
     
         // on lit le panier en memoire
         this.panierForWS = JSON.parse(localStorage.getItem('currentPanierWS'));
@@ -134,13 +136,19 @@ export class PanierService{
             this.panierForWS = new Array <PanierLigneWS>();
         }
 
-        // si deja un même produit dans le panier, on augmente la quantité
+        // si deja un même produit dans le panier, on augmente la quantité (à condition que le stock dispo le permette)
         let produitDejaPresent = 0;
         this.panierForWS.forEach(ligne => {
             if(ligne.idProduit == produit.id)
             {
-                ligne.quantite += 1;
-                produitDejaPresent += 1;
+                if((ligne.quantite + 1) <= produit.stock){ // si ce nouvel ajout ne depasse pas le stock disponible
+                    ligne.quantite += 1;
+                    produitDejaPresent += 1;
+                }
+                else{
+                    produitDejaPresent = 1;
+                    // console.log("Stock insuffisant !");
+                }           
             }
                 
         });
@@ -160,7 +168,7 @@ export class PanierService{
 
 
     private AjouterForAff(produit : Produit) : void {
-    
+        
         this.panierForAff = JSON.parse(localStorage.getItem('currentPanierAff'));
 
         if( !this.panierForAff)
@@ -173,8 +181,14 @@ export class PanierService{
         this.panierForAff.forEach(ligne => {
             if(ligne.produit.libelle == produit.libelle)
             {
-                ligne.quantite += 1;
-                produitDejaPresent += 1;
+                if((ligne.quantite + 1) <= produit.stock){ // si ce nouvel ajout ne depasse pas le stock disponible
+                    ligne.quantite += 1;
+                    produitDejaPresent += 1; // on incrémente 
+                }
+                else{
+                    produitDejaPresent = 1; // on n'incrémente pas et on reste à 1 ex. du produit
+                    // console.log("Stock insuffisant !");
+                }           
             }
                 
         });
@@ -189,7 +203,7 @@ export class PanierService{
         localStorage.setItem('currentPanierAff', JSON.stringify(this.panierForAff));
         
         // on met a jour l'affichage du panier
-        this.updatePanierForAff(); 
+        this.updatePanierForAff();
     }
 
 
